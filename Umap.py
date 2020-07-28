@@ -54,7 +54,7 @@ def UMAP_analysis(Data, title, folder):
     k_labels_n = []
     k_labels_N = []
 
-    for h in range(2,17, 3):
+    for h in range(2,10):
         hc_n = AgglomerativeClustering(n_clusters = h,affinity='euclidean',linkage='ward')
         hc_N = AgglomerativeClustering(n_clusters = h,affinity='euclidean',linkage='ward')
         kmeans_n = KMeans(init="random",n_clusters=h,n_init=20,max_iter=300)
@@ -80,7 +80,7 @@ def UMAP_analysis(Data, title, folder):
             for i in range(0,h):
                 if lab == i:
                     label_color.append(colors[i])
-        for n in range(2,17, 3):
+        for n in range(2,18, 3):
 
             if not os.path.exists(Path(folder,out,str(n))):
                 os.mkdir(Path(folder,out,str(n)))
@@ -102,7 +102,7 @@ def UMAP_analysis(Data, title, folder):
             for i in range(0,h):
                 if lab == i:
                     label_color.append(colors[i])
-        for n in range(2,17, 3):
+        for n in range(2,18, 3):
             fig, axs = plt.subplots(trial, trial)
             fig_tit = "n neighbor:" + str(n) + " K = " + str(h) + " (labels of Choosen ({}) nodes)".format(len(Nodes))
             fig.suptitle(fig_tit)
@@ -123,7 +123,7 @@ def UMAP_analysis(Data, title, folder):
             for i in range(0,h):
                 if lab == i:
                     label_color.append(colors[i])
-        for n in range(2,17, 3):
+        for n in range(2,18, 3):
 
             if not os.path.exists(Path(folder,out,str(n))):
                 os.mkdir(Path(folder,out,str(n)))
@@ -145,7 +145,7 @@ def UMAP_analysis(Data, title, folder):
             for i in range(0,h):
                 if lab == i:
                     label_color.append(colors[i])
-        for n in range(2,17, 3):
+        for n in range(2,18, 3):
             fig, axs = plt.subplots(trial, trial)
             fig_tit = "n neighbor:" + str(n) + " K = " + str(h) + " (labels of {} SCLC nodes)".format(len(NODES))
             fig.suptitle(fig_tit)
@@ -169,7 +169,7 @@ def UMAP_analysis(Data, title, folder):
             for i in range(0,h):
                 if lab == i:
                     label_color.append(colors[i])
-        for n in range(2,17, 3):
+        for n in range(2,18, 3):
 
             if not os.path.exists(Path(folder,out,str(n))):
                 os.mkdir(Path(folder,out,str(n)))
@@ -191,7 +191,7 @@ def UMAP_analysis(Data, title, folder):
             for i in range(0,h):
                 if lab == i:
                     label_color.append(colors[i])
-        for n in range(2,17, 3):
+        for n in range(2,18, 3):
             fig, axs = plt.subplots(trial, trial)
             fig_tit = "n neighbor:" + str(n) + " K = " + str(h) + " (labels of Choosen ({}) nodes)".format(len(Nodes))
             fig.suptitle(fig_tit)
@@ -212,7 +212,7 @@ def UMAP_analysis(Data, title, folder):
             for i in range(0,h):
                 if lab == i:
                     label_color.append(colors[i])
-        for n in range(2,17, 3):
+        for n in range(2,18, 3):
 
             if not os.path.exists(Path(folder,out,str(n))):
                 os.mkdir(Path(folder,out,str(n)))
@@ -234,7 +234,7 @@ def UMAP_analysis(Data, title, folder):
             for i in range(0,h):
                 if lab == i:
                     label_color.append(colors[i])
-        for n in range(2,17, 3):
+        for n in range(2,18, 3):
             fig, axs = plt.subplots(trial, trial)
             fig_tit = "n neighbor:" + str(n) + " K = " + str(h) + " (labels of {} SCLC nodes)".format(len(NODES))
             fig.suptitle(fig_tit)
