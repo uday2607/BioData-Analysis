@@ -7,8 +7,14 @@ import scipy.spatial.distance as ssd
 from sklearn.cluster import AgglomerativeClustering,MeanShift
 from sklearn.cluster import MeanShift
 import sklearn.metrics as sm
+import os
+from pathlib import Path
 
 def Hier_analysis(Data, title, folder):
+
+    out = "Hier"
+    if not os.path.exists(Path(folder,out)):
+        os.mkdir(Path(folder,out))
 
     NODES = []
     for node in open('sclcnetwork.ids').readlines():
@@ -30,7 +36,7 @@ def Hier_analysis(Data, title, folder):
 
     dend1 = dendrogram(linkage(scaled_data,method='ward'),leaf_rotation=90,leaf_font_size=8)
     plt.suptitle(title+": "+"Dendogram for SCLC {} nodes".format(len(NODES)))
-    plt.savefig(folder+"/"+title+": "+"Dendogram for SCLC {} nodes".format(len(NODES)))
+    plt.savefig(folder+"/"+out+"/"+title+": "+"Dendogram for SCLC {} nodes".format(len(NODES)))
     plt.clf()
 
     ## Dendogram for 5 nodes ##
@@ -43,7 +49,7 @@ def Hier_analysis(Data, title, folder):
 
     dend1 = dendrogram(linkage(scaled_data,method='ward'),leaf_rotation=90,leaf_font_size=8)
     plt.suptitle(title+": "+"Dendogram for Choosen ({}) Nodes".format(len(Nodes)))
-    plt.savefig(folder+"/"+title+": "+"Dendogram for Choosen ({}) Nodes".format(len(Nodes)))
+    plt.savefig(folder+"/"+out+"/"+title+": "+"Dendogram for Choosen ({}) Nodes".format(len(Nodes)))
     plt.clf()
 
     ## Of all the nodes ##
@@ -54,5 +60,5 @@ def Hier_analysis(Data, title, folder):
 
     dend1 = dendrogram(linkage(scaled_data,method='ward'),leaf_rotation=90,leaf_font_size=8)
     plt.suptitle(title+": "+"Dendogram for All Nodes")
-    plt.savefig(folder+"/"+title+": "+"Dendogram for All Nodes")
+    plt.savefig(folder+"/"+out+"/"+title+": "+"Dendogram for All Nodes")
     plt.clf()

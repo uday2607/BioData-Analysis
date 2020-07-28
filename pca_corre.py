@@ -4,8 +4,14 @@ from sklearn.decomposition import PCA
 from sklearn import preprocessing
 import matplotlib.pyplot as plt
 import scipy.stats as stats
+import os
+from pathlib import Path
 
 def PCA_analysis(Data,title,folder):
+
+    out = "PCA"
+    if not os.path.exists(Path(folder,out)):
+        os.mkdir(Path(folder,out))
 
     ## PCA of 33 nodes of SCLC ##
     Nodes = []
@@ -23,10 +29,11 @@ def PCA_analysis(Data,title,folder):
     for node in Remove:
         Nodes.remove(node)
 
-    with open(folder+'/'+'Nodes_not_found.txt','w') as f:
-        f.write("The nodes which are not found in dataset are \n\n")
-        for node in Remove:
-            f.write(node+'\n')
+    if len(Remove) > 0:
+        with open(folder+'/'+'Nodes_not_found.txt','w') as f:
+            f.write("The nodes of SCLC which are not found in dataset are \n\n")
+            for node in Remove:
+                f.write(node+'\n')
 
     data = Data.loc[Nodes]
     data = data.astype(float)
@@ -63,7 +70,7 @@ def PCA_analysis(Data,title,folder):
                 elif data_p < 0.05:
                     text = ax1.text(j, i, '*', ha="center", va="center", color="w", fontsize = 7)
         plt.suptitle(title+": "+"Pearson correlation of top {} genes".format(top))
-        plt.savefig(folder+"/"+title+": "+"Pearson correlation of top {} genes of SCLC {} nodes".format(top, len(Nodes)))
+        plt.savefig(folder+"/"+out+"/"+title+": "+"Pearson correlation of top {} genes of SCLC {} nodes".format(top, len(Nodes)))
         plt.clf()
 
     # Scree Plot #
@@ -75,7 +82,7 @@ def PCA_analysis(Data,title,folder):
     plt.ylabel('Percentage of Explained Variance')
     plt.xlabel('Principal Component')
     plt.title('Scree Plot')
-    plt.savefig(folder+"/"+title+": "+"Scree Plot of SCLC {} Nodes".format(len(Nodes)))
+    plt.savefig(folder+"/"+out+"/"+title+": "+"Scree Plot of SCLC {} Nodes".format(len(Nodes)))
     plt.clf()
 
     ## PCA of All nodes ##
@@ -112,7 +119,7 @@ def PCA_analysis(Data,title,folder):
             elif data_p < 0.05:
                 text = ax1.text(j, i, '*', ha="center", va="center", color="w", fontsize = 7)
     plt.suptitle(title+": "+"Pearson correlation of top {} genes".format(top))
-    plt.savefig(folder+"/"+title+": "+"Pearson correlation of top {} genes of All nodes".format(top))
+    plt.savefig(folder+"/"+out+"/"+title+": "+"Pearson correlation of top {} genes of All nodes".format(top))
     plt.clf()
 
     # Scree Plot #
@@ -124,5 +131,5 @@ def PCA_analysis(Data,title,folder):
     plt.ylabel('Percentage of Explained Variance')
     plt.xlabel('Principal Component')
     plt.title('Scree Plot')
-    plt.savefig(folder+"/"+title+": "+"Scree Plot of All Nodes")
+    plt.savefig(folder+"/"+out+"/"+title+": "+"Scree Plot of All Nodes")
     plt.clf()
