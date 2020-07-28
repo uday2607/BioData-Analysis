@@ -1,0 +1,7 @@
+InFolder = MicroArrayDataV1
+Infile = CCLE.txt
+All_samples = True
+Select_samples = 
+Deselct_samples = 
+Title = Test
+OutFolder = CCLE

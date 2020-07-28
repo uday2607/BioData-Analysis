@@ -1,0 +1,7 @@
+InFolder = MicroArrayDataV1
+Infile = mnGSE10841.txt
+All_samples = True
+Select_samples = 
+Deselct_samples = 
+Title = Test
+OutFolder = 10841

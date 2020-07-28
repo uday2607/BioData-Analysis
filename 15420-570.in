@@ -1,0 +1,7 @@
+InFolder = MicroArrayDataV1
+Infile = mGSE15420-570.txt
+All_samples = False
+Select_samples = 
+Deselct_samples = GSM380500, GSM380501, GSM380505
+Title = Test
+OutFolder = 15420-570
