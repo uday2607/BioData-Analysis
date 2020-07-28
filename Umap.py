@@ -54,7 +54,7 @@ def UMAP_analysis(Data, title, folder):
     k_labels_n = []
     k_labels_N = []
 
-    for h in range(2,10):
+    for h in range(2,17, 3):
         hc_n = AgglomerativeClustering(n_clusters = h,affinity='euclidean',linkage='ward')
         hc_N = AgglomerativeClustering(n_clusters = h,affinity='euclidean',linkage='ward')
         kmeans_n = KMeans(init="random",n_clusters=h,n_init=20,max_iter=300)
@@ -117,7 +117,7 @@ def UMAP_analysis(Data, title, folder):
             plt.clf()
 
     # N labels #
-    for h in range(2,10):
+    for h in range(2,17, 3):
         label_color = []
         for lab in hc_labels_N[h-2]:
             for i in range(0,h):
@@ -163,7 +163,7 @@ def UMAP_analysis(Data, title, folder):
 
     # n labels #
     colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
-    for h in range(2,10):
+    for h in range(2,17, 3):
         label_color = []
         for lab in hc_labels_n[h-2]:
             for i in range(0,h):
@@ -206,7 +206,7 @@ def UMAP_analysis(Data, title, folder):
             plt.clf()
 
     # N labels #
-    for h in range(2,10):
+    for h in range(2,17,3):
         label_color = []
         for lab in hc_labels_N[h-2]:
             for i in range(0,h):
