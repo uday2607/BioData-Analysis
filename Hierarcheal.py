@@ -51,14 +51,3 @@ def Hier_analysis(Data, title, folder):
     plt.suptitle(title+": "+"Dendogram for Choosen ({}) Nodes".format(len(Nodes)))
     plt.savefig(folder+"/"+out+"/"+title+": "+"Dendogram for Choosen ({}) Nodes".format(len(Nodes)))
     plt.clf()
-
-    ## Of all the nodes ##
-
-    data = Data
-    data = data.astype(float)
-    scaled_data = preprocessing.scale(data.T)
-
-    dend1 = dendrogram(linkage(scaled_data,method='ward'),leaf_rotation=90,leaf_font_size=8)
-    plt.suptitle(title+": "+"Dendogram for All Nodes")
-    plt.savefig(folder+"/"+out+"/"+title+": "+"Dendogram for All Nodes")
-    plt.clf()
