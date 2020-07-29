@@ -27,6 +27,17 @@ def dequote_list(ls):
 
     return ns
 
+def Float_list(ls):
+
+    ns = []
+    for e in ls:
+        if e != '':
+            ns.append(float(e))
+        else:
+            ns.append(0)
+
+    return ns
+
 def parsefile(file):
 
     with open(file, 'r') as f:
@@ -66,11 +77,11 @@ def parsefile(file):
             select = []
             for col in string.split(','):
                 if ':' in col:
-                    Data = pd.concat(Data, data[col.split(':')[0]:col.split(':')[1]])
+                    Data = pd.concat([Data, data[list(data.loc[:, dequote(col.split(':')[0].strip()):dequote(col.split(':')[1].strip())].columns)]], axis = 1)
                 else:
-                    select.append(col)
+                    select.append(dequote(col.strip()))
 
-            Data = pd.concat(Data, data[select])
+            Data = pd.concat([Data, data[select]], axis = 1)
 
             return Data, title, out
 
@@ -79,9 +90,9 @@ def parsefile(file):
             deselect = []
             for col in string.split(','):
                 if ':' in col:
-                    data = data.drop(data.ix[:, col.split(':')[0].strip():col.split(':')[1].strip()].columns, axis = 1)
+                    data = data.drop(list(data.loc[:, dequote(col.split(':')[0].strip()):dequote(col.split(':')[1].strip())].columns), axis = 1)
                 else:
-                    deselect.append(col.strip())
+                    deselect.append(dequote(col.strip()))
             data = data.drop(deselect, axis=1)
 
             return data, title, out

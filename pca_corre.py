@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import scipy.stats as stats
 import os
 from pathlib import Path
+import pickle
 
 def PCA_analysis(Data,title,folder):
 
@@ -36,7 +37,7 @@ def PCA_analysis(Data,title,folder):
                 f.write(node+'\n')
 
     data = Data.loc[Nodes]
-    data = data.astype(float)
+    data = data.astype('float64')
     scaled_data = preprocessing.scale(data.T)
 
     # Pearson correlation #
@@ -88,7 +89,7 @@ def PCA_analysis(Data,title,folder):
     ## PCA of All nodes ##
 
     data = Data
-    data = data.astype(float)
+    data = data.astype('float64')
     scaled_data = preprocessing.scale(data.T)
 
     pca = PCA()
@@ -156,7 +157,7 @@ def PCA_analysis(Data,title,folder):
         Nodes.remove(node)
 
     data = Data.loc[Nodes]
-    data = data.astype(float)
+    data = data.astype('float64')
     scaled_data = preprocessing.scale(data.T)
 
     # Pearson correlation #
