@@ -1,6 +1,7 @@
 import os, sys
 from pathlib import Path
 import pandas as pd
+import numpy as np
 
 def dequote(s):
     """
@@ -9,10 +10,10 @@ def dequote(s):
     If a matching pair of quotes is not found, return the string unchanged.
     """
     if s == '' or s == " ":
-        return s
+        return s.strip()
     if (s[0] == s[-1]) and s.startswith(("'", '"')):
         return s[1:-1]
-    return s
+    return s.strip()
 
 def dequote_list(ls):
     """
@@ -21,9 +22,9 @@ def dequote_list(ls):
     ns = []
     for s in ls:
         if (s[0] == s[-1]) and s.startswith(("'", '"')):
-            ns.append(s[1:-1])
+            ns.append(s[1:-1].strip())
         else:
-            ns.append(s)
+            ns.append(s.strip())
 
     return ns
 
@@ -45,8 +46,9 @@ def parsefile(file):
 
     IN = lines[0].split('=')[1].strip().strip("\n")
     Infile = lines[1].split('=')[1].strip().strip("\n")
-    title = lines[5].split('=')[1].strip().strip("\n")
-    out = lines[6].split('=')[1].strip().strip("\n")
+    log2 = lines[2].split('=')[1].strip().strip("\n")
+    title = lines[6].split('=')[1].strip().strip("\n")
+    out = lines[7].split('=')[1].strip().strip("\n")
 
     if not os.path.exists(out):
         os.mkdir(out)
@@ -66,14 +68,19 @@ def parsefile(file):
     for i in range(1,len(A)):
         data.loc[dequote(A[i].split('\t')[0].strip()),dequote_list(A[0].strip('\n').split('\t'))] = A[i].strip('\n').split('\t')[1:]
 
-    if lines[2].split('=')[1].strip().strip("\n") == 'True':
-        return data, title, out
+    data = data.replace('NA', 0)    
+
+    if lines[3].split('=')[1].strip().strip("\n") == 'True':
+        if log2 == 'True':
+            return data.astype(float).apply(np.log2), title, out
+        else:
+            return data.astype(float), title, out
     else:
         Data = pd.DataFrame(index = Nodes)
 
-        if lines[3].split('=')[1].strip().strip("\n") != '':
+        if lines[4].split('=')[1].strip().strip("\n") != '':
 
-            string = lines[3].split('=')[1].strip().strip("\n")
+            string = lines[4].split('=')[1].strip().strip("\n")
             select = []
             for col in string.split(','):
                 if ':' in col:
@@ -83,10 +90,13 @@ def parsefile(file):
 
             Data = pd.concat([Data, data[select]], axis = 1)
 
-            return Data, title, out
+            if log2 == 'True':
+                return Data.astype(float).apply(np.log2), title, out
+            else:
+                return Data.astype(float), title, out
 
         else:
-            string = lines[4].split('=')[1].strip().strip("\n")
+            string = lines[5].split('=')[1].strip().strip("\n")
             deselect = []
             for col in string.split(','):
                 if ':' in col:
@@ -95,4 +105,7 @@ def parsefile(file):
                     deselect.append(dequote(col.strip()))
             data = data.drop(deselect, axis=1)
 
-            return data, title, out
+            if log2 == 'True':
+                return data.astype(float).apply(np.log2), title, out
+            else:
+                return data.astype(float), title, out

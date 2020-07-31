@@ -43,6 +43,14 @@ def Hier_analysis(Data, title, folder):
 
     Nodes = ['ASCL1','NEUROD1','POU2F3','ATOH1','YAP1']
 
+    Remove = []
+    for node in Nodes:
+        if not node in list(Data.index):
+            Remove.append(node)
+
+    for node in Remove:
+        Nodes.remove(node)
+
     data = Data.loc[Nodes]
     data = data.astype(float)
     scaled_data = preprocessing.scale(data.T)

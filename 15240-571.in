@@ -1,5 +1,6 @@
 InFolder = MicroArrayDataV1
 Infile = mGSE15240-571.txt
+log2 = False
 All_samples = True
 Select_samples = 
 Deselct_samples = 

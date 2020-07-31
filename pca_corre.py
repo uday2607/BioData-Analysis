@@ -85,7 +85,7 @@ def PCA_analysis(Data,title,folder):
     plt.title('Scree Plot')
     plt.savefig(folder+"/"+out+"/"+title+": "+"Scree Plot of SCLC {} Nodes".format(len(Nodes)))
     plt.clf()
-    
+
     ## PCA of top 10 and 13 nodes of CCLE ##
 
     top_nodes = []
@@ -106,6 +106,32 @@ def PCA_analysis(Data,title,folder):
 
     for node in Remove:
         Nodes.remove(node)
+
+    Remove = []
+    for node in top_nodes[0]:
+        if not node in list(Data.index):
+            Remove.append(node)
+
+    for node in Remove:
+        top_nodes[0].remove(node)
+
+    Remove = []
+    for node in top_nodes[1]:
+        if not node in list(Data.index):
+            Remove.append(node)
+
+    for node in Remove:
+        top_nodes[1].remove(node)    
+
+    tops[0] = len(top_nodes[0])
+    tops[1] = len(top_nodes[1])
+
+    if len(Remove) > 0:
+        with open(folder+'/'+'Nodes_not_found.txt','a') as f:
+            f.write("The nodes of Top 13 (of PC1 from CCLE) which are not found in dataset are \n\n")
+            for node in Remove:
+                f.write(node+'\n')
+
 
     data = Data.loc[Nodes]
     data = data.astype('float64')
