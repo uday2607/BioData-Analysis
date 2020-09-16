@@ -57,7 +57,7 @@ def Scatter2D(Data, title, folder):
         Nodes.remove(node)
 
     if len(Remove) > 0:
-        with open(folder+'/'+'Nodes_not_found.txt','w') as f:
+        with open(Path(folder,'Nodes_not_found.txt'),'w') as f:
             f.write("The nodes of SCLC which are not found in dataset are \n\n")
             for node in Remove:
                 f.write(node+'\n')
@@ -77,5 +77,5 @@ def Scatter2D(Data, title, folder):
 
         fig, ax = density_scatter(X, Y, pnodes[0], pnodes[1], bins = [200,200])
         plt.suptitle(title+": Scatter plot of {} and {}".format(pnodes[0],pnodes[1]))
-        plt.savefig(folder+"/"+out+"/"+title+": Scatter plot of {} and {}".format(pnodes[0],pnodes[1]))
+        plt.savefig(Path(folder,out,title+": Scatter plot of {} and {}".format(pnodes[0],pnodes[1])))
         plt.close(fig)

@@ -59,7 +59,7 @@ def PCA_analysis(Data,title,folder):
         Nodes.remove(node)
 
     if len(Remove) > 0:
-        with open(folder+'/'+'Nodes_not_found.txt','w') as f:
+        with open(Path(folder,'Nodes_not_found.txt'),'w') as f:
             f.write("The nodes of SCLC which are not found in dataset are \n\n")
             for node in Remove:
                 f.write(node+'\n')
@@ -119,7 +119,7 @@ def PCA_analysis(Data,title,folder):
         Nodes.remove(node)
 
     if len(Remove) > 0:
-        with open(folder+'/'+'Nodes_not_found.txt','w') as f:
+        with open(Path(folder,'Nodes_not_found.txt'),'w') as f:
             f.write("The nodes of SCLC which are not found in dataset are \n\n")
             for node in Remove:
                 f.write(node+'\n')
@@ -161,7 +161,7 @@ def PCA_analysis(Data,title,folder):
                 elif data_p < 0.05:
                     text = ax1.text(j, i, '*', ha="center", va="center", color="w", fontsize = 7)
         plt.suptitle(title+": "+"Pearson correlation of top {} genes".format(top))
-        plt.savefig(folder+"/"+out+"/"+title+": "+"Pearson correlation of top {} genes of SCLC {} nodes".format(top, len(Nodes)))
+        plt.savefig(Path(folder,out,+title+": "+"Pearson correlation of top {} genes of SCLC {} nodes".format(top, len(Nodes))))
         plt.clf()
 
     # Scree Plot #
@@ -173,7 +173,7 @@ def PCA_analysis(Data,title,folder):
     plt.ylabel('Percentage of Explained Variance')
     plt.xlabel('Principal Component')
     plt.title('Scree Plot')
-    plt.savefig(folder+"/"+out+"/"+title+": "+"Scree Plot of SCLC {} Nodes".format(len(Nodes)))
+    plt.savefig(Path(folder,out,title+": "+"Scree Plot of SCLC {} Nodes".format(len(Nodes))))
     plt.clf()
 
     ## PCA of top 10 and 13 nodes of CCLE ##
@@ -217,7 +217,7 @@ def PCA_analysis(Data,title,folder):
     tops[1] = len(top_nodes[1])
 
     if len(Remove) > 0:
-        with open(folder+'/'+'Nodes_not_found.txt','a') as f:
+        with open(Path(folder,'Nodes_not_found.txt'),'a') as f:
             f.write("The nodes of Top 13 (of PC1 from CCLE) which are not found in dataset are \n\n")
             for node in Remove:
                 f.write(node+'\n')
@@ -260,5 +260,5 @@ def PCA_analysis(Data,title,folder):
                 elif data_p < 0.05:
                     text = ax1.text(j, i, '*', ha="center", va="center", color="w", fontsize = 7)
         plt.suptitle(title+": "+"Pearson correlation of top {} genes of CCLE".format(top))
-        plt.savefig(folder+"/"+out+"/"+title+": "+"Pearson correlation of top {} genes of CCLE".format(top))
+        plt.savefig(Path(folder,out,title+": "+"Pearson correlation of top {} genes of CCLE".format(top)))
         plt.clf()

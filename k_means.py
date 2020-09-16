@@ -62,7 +62,7 @@ def K_analysis(Data,title,folder):
     plt.ylabel("Silhoutte score")
     plt.xlabel("K values")
     plt.suptitle(title+": "+"Silhoutte score for SCLC {} nodes".format(len(Nodes)))
-    plt.savefig(folder+"/"+out+"/"+title+": "+"Silhoutte score for SCLC {} nodes".format(len(Nodes)))
+    plt.savefig(Path(folder,out,title+": "+"Silhoutte score for SCLC {} nodes".format(len(Nodes))))
     plt.clf()
 
     # Distortions of K means #
@@ -74,7 +74,7 @@ def K_analysis(Data,title,folder):
     plt.ylabel("Distortions")
     plt.xlabel("K values")
     plt.suptitle(title+": "+'Elbow plot for SCLC {} nodes'.format(len(Nodes)))
-    plt.savefig(folder+"/"+out+"/"+title+": "+'Elbow plot for SCLC {} nodes.png'.format(len(Nodes)))
+    plt.savefig(Path(folder,out,title+": "+'Elbow plot for SCLC {} nodes.png'.format(len(Nodes))))
     plt.clf()
 
     # Difference between Distortions #
@@ -84,7 +84,7 @@ def K_analysis(Data,title,folder):
     plt.ylabel("Difference in Distortions")
     plt.xlabel("K values")
     plt.suptitle(title+": "+'Differences in Distortions for SCLC {} nodes'.format(len(Nodes)))
-    plt.savefig(folder+"/"+out+"/"+title+": "+'Differences in Distortions for SCLC {} nodes'.format(len(Nodes)))
+    plt.savefig(Path(folder,out,title+": "+'Differences in Distortions for SCLC {} nodes'.format(len(Nodes))))
     plt.clf()
 
     ## For 5 nodes ##
@@ -99,7 +99,7 @@ def K_analysis(Data,title,folder):
         Nodes.remove(node)
 
     if len(Remove) > 0:
-        with open(folder+'/'+'Nodes_not_found.txt','a') as f:
+        with open(Path(folder,'Nodes_not_found.txt'),'a') as f:
             f.write("The nodes of Choosen nodes which are not found in dataset are \n\n")
             for node in Remove:
                 f.write(node+'\n')
@@ -138,7 +138,7 @@ def K_analysis(Data,title,folder):
     plt.ylabel("Silhoutte score")
     plt.xlabel("K values")
     plt.suptitle(title+": "+"Silhoutte score for Choosen ({}) nodes".format(len(Nodes)))
-    plt.savefig(folder+"/"+out+"/"+title+": "+"Silhoutte score for Choosen ({}) nodes".format(len(Nodes)))
+    plt.savefig(Path(folder,out,title+": "+"Silhoutte score for Choosen ({}) nodes".format(len(Nodes))))
     plt.clf()
 
     # Distortions of K means #
@@ -150,7 +150,7 @@ def K_analysis(Data,title,folder):
     plt.ylabel("Distortions")
     plt.xlabel("K values")
     plt.suptitle(title+": "+'Elbow plot for Choosen ({}) nodes'.format(len(Nodes)))
-    plt.savefig(folder+"/"+out+"/"+title+": "+'Elbow plot for Choosen ({}) nodes.png'.format(len(Nodes)))
+    plt.savefig(Path(folder,out,title+": "+'Elbow plot for Choosen ({}) nodes.png'.format(len(Nodes))))
     plt.clf()
 
     # Difference between Distortions #
@@ -160,5 +160,5 @@ def K_analysis(Data,title,folder):
     plt.ylabel("Difference in Distortions")
     plt.xlabel("K values")
     plt.suptitle(title+": "+'Differences in Distortions for Choosen ({}) nodes'.format(len(Nodes)))
-    plt.savefig(folder+"/"+out+"/"+title+": "+'Differences in Distortions for Choosen ({}) nodes.png'.format(len(Nodes)))
+    plt.savefig(Path(folder,out,title+": "+'Differences in Distortions for Choosen ({}) nodes.png'.format(len(Nodes))))
     plt.clf()

@@ -36,7 +36,7 @@ def Hier_analysis(Data, title, folder):
 
     dend1 = dendrogram(linkage(scaled_data,method='ward'),leaf_rotation=90,leaf_font_size=8)
     plt.suptitle(title+": "+"Dendogram for SCLC {} nodes".format(len(NODES)))
-    plt.savefig(folder+"/"+out+"/"+title+": "+"Dendogram for SCLC {} nodes".format(len(NODES)))
+    plt.savefig(Path(folder,out,title+": "+"Dendogram for SCLC {} nodes".format(len(NODES))))
     plt.clf()
 
     ## Dendogram for 5 nodes ##
@@ -57,5 +57,5 @@ def Hier_analysis(Data, title, folder):
 
     dend1 = dendrogram(linkage(scaled_data,method='ward'),leaf_rotation=90,leaf_font_size=8)
     plt.suptitle(title+": "+"Dendogram for Choosen ({}) Nodes".format(len(Nodes)))
-    plt.savefig(folder+"/"+out+"/"+title+": "+"Dendogram for Choosen ({}) Nodes".format(len(Nodes)))
+    plt.savefig(Path(folder,out,title+": "+"Dendogram for Choosen ({}) Nodes".format(len(Nodes))))
     plt.clf()

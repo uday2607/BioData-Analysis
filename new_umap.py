@@ -41,7 +41,6 @@ def new_UMAP_analysis(Data, title, folder):
     Scaled_data = preprocessing.scale(DATA.T)
 
     Scaled_data = pd.DataFrame(Scaled_data,columns = TADA)
-    print(Scaled_data)
 
     for Nodes in Node_vars:
 
@@ -69,12 +68,12 @@ def new_UMAP_analysis(Data, title, folder):
 
                 plt.scatter(embedding[:, 0],embedding[:, 1],color = label_color,s=20)
                 plt.title('Nodes={}_UMAP_{}_Hier:{}_n={}'.format(str(len(Nodes)),str(j),str(h),str(n_neighbors)))
-                plt.savefig(folder+"/"+out+'/'+'Nodes={}_UMAP_{}_Hier:{}_n={}'.format(str(len(Nodes)),str(j),str(h),str(n_neighbors)))
+                plt.savefig(Path(folder,out,'Nodes={}_UMAP_{}_Hier:{}_n={}'.format(str(len(Nodes)),str(j),str(h),str(n_neighbors))))
                 plt.close()
 
             for node in TADA:
                 plt.scatter(embedding[:, 0],embedding[:, 1],c = Scaled_data[node],cmap = 'RdYlGn',s=15)
                 plt.title('Nodes={}_UMAP_{}_Exp:{}_n={}'.format(str(len(Nodes)),str(j),node,str(n_neighbors)))
                 plt.colorbar()
-                plt.savefig(folder+"/"+out+'/'+'Nodes={}_UMAP_{}_Exp:{}_n={}'.format(str(len(Nodes)),str(j),node,str(n_neighbors)))
+                plt.savefig(Path(folder,out,'Nodes={}_UMAP_{}_Exp:{}_n={}'.format(str(len(Nodes)),str(j),node,str(n_neighbors))))
                 plt.close()
