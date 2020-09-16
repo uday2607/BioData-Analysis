@@ -1,0 +1,8 @@
+InFolder = MicroArrayDataV1
+Infile = bulk_rna_1.csv
+log2 = False
+All_samples = True
+Select_samples = 
+Deselct_samples = 
+Title = BulkRNA_1
+OutFolder = BulkRNA_1

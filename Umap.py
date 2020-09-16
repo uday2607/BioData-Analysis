@@ -55,23 +55,23 @@ def UMAP_analysis(Data, title, folder):
 
     for h in range(2,10):
         hc_n = AgglomerativeClustering(n_clusters = h,affinity='euclidean',linkage='ward')
-        hc_N = AgglomerativeClustering(n_clusters = h,affinity='euclidean',linkage='ward')
+        #hc_N = AgglomerativeClustering(n_clusters = h,affinity='euclidean',linkage='ward')
         kmeans_n = KMeans(init="random",n_clusters=h,n_init=20,max_iter=300)
-        kmeans_N = KMeans(init="random",n_clusters=h,n_init=20,max_iter=300)
+        #kmeans_N = KMeans(init="random",n_clusters=h,n_init=20,max_iter=300)
 
         y_n = hc_n.fit_predict(scaled_data_n)
-        y_N = hc_N.fit_predict(scaled_data_N)
+        #y_N = hc_N.fit_predict(scaled_data_N)
         x_n = kmeans_n.fit(scaled_data_n)
-        x_N = kmeans_N.fit(scaled_data_N)
+        #x_N = kmeans_N.fit(scaled_data_N)
 
         hc_labels_n.append(hc_n.labels_)
-        hc_labels_N.append(hc_N.labels_)
+        #hc_labels_N.append(hc_N.labels_)
         k_labels_n.append(kmeans_n.labels_)
-        k_labels_N.append(kmeans_N.labels_)
+        #k_labels_N.append(kmeans_N.labels_)
 
     fig, axs = plt.subplots(trial, trial)
 
-    ## Umap for 33 nodes with n and N labels ##
+    '''## Umap for 33 nodes with n and N labels ##
 
     # n labels #
     colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
@@ -166,7 +166,7 @@ def UMAP_analysis(Data, title, folder):
             fig_name = "K means " + str(h) + " umap " + str(n) + " (labels of {} SCLC nodes)".format(len(NODES))
             fig.savefig(folder+"/"+out+'/'+str(n)+'/'+title+": "+fig_name+ " for SCLC {} nodes".format(len(NODES)))
             plt.cla()
-            plt.clf()
+            plt.clf()'''
 
 
     ## Umap for 5 nodes ##
@@ -220,7 +220,7 @@ def UMAP_analysis(Data, title, folder):
             plt.clf()
 
 
-    # N labels #
+    '''# N labels #
     for h in range(2,10):
         label_color = []
         for lab in hc_labels_N[h-2]:
@@ -265,6 +265,6 @@ def UMAP_analysis(Data, title, folder):
             fig_name = "K means " + str(h) + " umap " + str(n) + " (labels of {} SCLC nodes)".format(len(NODES))
             fig.savefig(folder+"/"+out+'/'+str(n)+'/'+title+": "+fig_name+ " Choosen ({}) nodes".format(len(Nodes)))
             plt.cla()
-            plt.clf()
+            plt.clf()'''
 
     plt.close(fig)

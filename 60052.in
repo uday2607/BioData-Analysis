@@ -1,8 +1,0 @@
-InFolder = MicroArrayDataV1
-Infile = GSE60052.txt
-log2 = False
-All_samples = False
-Select_samples = 
-Deselct_samples =  B08-3483NA.normal, B08-3758NA.normal, B08-4386NA.normal, B08-4579NA.normal, N08-4497A.normal, N08-3503A.normal, N08-3758A.normal
-Title = Test
-OutFolder = 60052

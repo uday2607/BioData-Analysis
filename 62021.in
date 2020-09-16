@@ -1,8 +1,0 @@
-InFolder = MicroArrayDataV1
-Infile = mGSE62021.txt
-log2 = False
-All_samples = True
-Select_samples = 
-Deselct_samples = 
-Title = Test
-OutFolder = 62021

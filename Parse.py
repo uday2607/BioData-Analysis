@@ -1,4 +1,4 @@
-import os, sys
+import os, sys,  pickle
 from pathlib import Path
 import pandas as pd
 import numpy as np
@@ -21,7 +21,9 @@ def dequote_list(ls):
     """
     ns = []
     for s in ls:
-        if (s[0] == s[-1]) and s.startswith(("'", '"')):
+        if s == '' or s == " ":
+            ns.append(s.strip())
+        elif (s[0] == s[-1]) and s.startswith(("'", '"')):
             ns.append(s[1:-1].strip())
         else:
             ns.append(s.strip())
@@ -39,9 +41,9 @@ def Float_list(ls):
 
     return ns
 
-def parsefile(file):
+def parse_infile(file):
 
-    with open(file, 'r') as f:
+    with open("infiles"+"/"+file, 'r') as f:
         lines = f.readlines()
 
     IN = lines[0].split('=')[1].strip().strip("\n")
@@ -53,22 +55,37 @@ def parsefile(file):
     if not os.path.exists(out):
         os.mkdir(out)
 
-    A = open(Path(IN, Infile)).readlines()
+    if Infile[-3:] == 'txt':
 
-    Cell_Lines = []
-    for col in A[0].split('\t'):
-        Cell_Lines.append(dequote(col.strip().strip('\n')))
+        A = open(Path(IN, Infile)).readlines()
 
-    Nodes = []
-    for i in range(1,len(A)):
-        Nodes.append(dequote(A[i].split('\t')[0].strip()))
+        Cell_Lines = []
+        for col in A[0].split('\t'):
+            Cell_Lines.append(dequote(col.strip().strip('\n')))
 
-    data = pd.DataFrame(columns = Cell_Lines, index = Nodes)
+        Nodes = []
+        for i in range(1,len(A)):
+            Nodes.append(dequote(A[i].split('\t')[0].strip()))
 
-    for i in range(1,len(A)):
-        data.loc[dequote(A[i].split('\t')[0].strip()),dequote_list(A[0].strip('\n').split('\t'))] = A[i].strip('\n').split('\t')[1:]
+        data = pd.DataFrame(columns = Cell_Lines, index = Nodes)
 
-    data = data.replace('NA', 0)    
+        for i in range(1,len(A)):
+            data.loc[dequote(A[i].split('\t')[0].strip()),dequote_list(A[0].strip('\n').split('\t'))] = A[i].strip('\n').split('\t')[1:]
+
+    elif Infile[-3:] == 'csv':
+
+        data = pd.read_csv(IN+'/'+Infile, index_col = 0)
+
+    elif Infile[-4:] == 'xlsx':
+
+        data = pd.read_csv(IN+'/'+Infile, index_col = 0)
+
+    elif Infile[-4:] == 'data':
+
+        with open(IN+"/"+Infile,'rb') as f:
+            data = pickle.load(f)
+
+    data = data.replace('NA', 0)
 
     if lines[3].split('=')[1].strip().strip("\n") == 'True':
         if log2 == 'True':
@@ -109,3 +126,18 @@ def parsefile(file):
                 return data.astype(float).apply(np.log2), title, out
             else:
                 return data.astype(float), title, out
+
+def parse_input(file):
+
+    with open("input"+"/"+file,'r') as f:
+        lines = f.readlines()
+
+    IN = lines[0].split("=")[1].strip("\n").strip()
+    data, title, out  = parse_infile(IN)
+
+    funcs = lines[1].split("=")[1].strip("\n").strip().split(",")
+    runs = []
+    for func in funcs:
+         runs.append(func.strip())
+
+    return data, title, out, runs

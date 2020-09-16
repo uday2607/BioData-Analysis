@@ -1,8 +1,0 @@
-InFolder = MicroArrayDataV1
-Infile = mGSE40275.txt
-log2 = False
-All_samples = False
-Select_samples = GSM990205:GSM990207, GSM990211:GSM990216, GSM990219:GSM990224, GSM990231:GSM990233, GSM990246, GSM990247
-Deselct_samples = 
-Title = Test
-OutFolder = 40275

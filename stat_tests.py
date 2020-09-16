@@ -67,7 +67,7 @@ def Hier_significance(Data, title, folder):
 
         y = np.array(y)
         y_std = np.array(y_std)
-        y_data = np.array(y_data)
+        y_data = np.array(y_data, dtype='object')
 
         if len(Nodes) == 4:
             for _ in range(len(Nodes)):
@@ -179,7 +179,7 @@ def K_significance(Data, title, folder):
 
         y = np.array(y)
         y_std = np.array(y_std)
-        y_data = np.array(y_data)
+        y_data = np.array(y_data, dtype='object')
 
         if len(Nodes) == 4:
             for _ in range(len(Nodes)):
