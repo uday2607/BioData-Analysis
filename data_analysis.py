@@ -16,26 +16,9 @@ if __name__ == '__main__':
     file = sys.argv[1]
     print("Parsing started")
     data, title, folder, runs = parse_input(file)
-    Pickle_Data(data, title, folder)
+    # Pickle_Data(data, title, folder) Run it only if you need it
     print("Parsing done!!!. Strating the analysis")
     for run in runs:
         exec(run+"(data, title, folder)")
         print(run+" is done")
-    '''PCA_analysis(data, title, folder)
-    print("PCA analysis is done")
-    Hier_analysis(data, title, folder)
-    print("Hierarcheal clustering is done")
-    Hier_BarGraph(data, title, folder)
-    K_BarGraph(data, title, folder)
-    print("Bargraph analysis is done")
-    Hier_Bool(data, title, folder)
-    K_Bool(data, title, folder)
-    print("Boolean data comparision done")
-    Hier_significance(data, title, folder)
-    K_significance(data, title, folder)
-    print("Significance tests are done")
-    K_analysis(data, title, folder)
-    print("K means clustering is done")
-    #UMAP_analysis(data, title, folder)
-    #print("UMAP is done")'''
     print("\nAll the analysis is done. Good bye :)")
