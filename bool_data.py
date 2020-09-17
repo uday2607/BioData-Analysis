@@ -102,7 +102,7 @@ def Hier_Bool(Data, title, folder):
             for j in range(len(STATES)):
                 text = ax1.text(j, i, '%0.3f' % matrix[i, j], ha="center", va="center", color="black", fontsize = 7.5)
         plt.suptitle(title+": "+"Heatmap of distance of States from Hier({}) to Boolean ({}) states".format(h, len(STATES)))
-        plt.savefig(folder+"/"+out+"/"+title+": "+"Heatmap of distance of States from Hier({}) to Boolean states".format(h, len(STATES)))
+        plt.savefig(Path(folder,out,title+": "+"Heatmap of distance of States from Hier({}) to Boolean states".format(h, len(STATES))))
         plt.cla()
         plt.clf()
 
@@ -194,7 +194,7 @@ def K_Bool(Data, title, folder):
             for j in range(len(STATES)):
                 text = ax1.text(j, i, '%0.3f' % matrix[i, j], ha="center", va="center", color="black", fontsize = 7.5)
         plt.suptitle(title+": "+"Heatmap of distance of States from K({}) to Boolean ({}) states".format(k, len(STATES)))
-        plt.savefig(folder+"/"+out+"/"+title+": "+"Heatmap of distance of States from K({}) to Boolean states".format(k, len(STATES)))
+        plt.savefig(Path(folder,out,title+": "+"Heatmap of distance of States from K({}) to Boolean states".format(k, len(STATES))))
         plt.cla()
         plt.clf()
 

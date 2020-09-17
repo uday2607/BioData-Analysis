@@ -43,7 +43,7 @@ def Float_list(ls):
 
 def parse_infile(file):
 
-    with open("infiles"+"/"+file, 'r') as f:
+    with open(Path("infiles",file), 'r') as f:
         lines = f.readlines()
 
     IN = lines[0].split('=')[1].strip().strip("\n")
@@ -74,15 +74,15 @@ def parse_infile(file):
 
     elif Infile[-3:] == 'csv':
 
-        data = pd.read_csv(IN+'/'+Infile, index_col = 0)
+        data = pd.read_csv(Path(IN,Infile), index_col = 0)
 
     elif Infile[-4:] == 'xlsx':
 
-        data = pd.read_csv(IN+'/'+Infile, index_col = 0)
+        data = pd.read_csv(Path(IN,Infile), index_col = 0)
 
     elif Infile[-4:] == 'data':
 
-        with open(IN+"/"+Infile,'rb') as f:
+        with open(Path(IN,Infile),'rb') as f:
             data = pickle.load(f)
 
     data = data.replace('NA', 0)
@@ -129,7 +129,7 @@ def parse_infile(file):
 
 def parse_input(file):
 
-    with open("input"+"/"+file,'r') as f:
+    with open(Path("input",file),'r') as f:
         lines = f.readlines()
 
     IN = lines[0].split("=")[1].strip("\n").strip()
