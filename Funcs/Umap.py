@@ -11,7 +11,7 @@ from sklearn.cluster import AgglomerativeClustering,MeanShift
 def UMAP_analysis(Data, title, folder, **kwargs):
 
     n_neighbors = 4
-    trial = 4
+    trial = 1
 
     # dimensions which are to be plotted
     TADA = kwargs['Dims']
@@ -57,5 +57,5 @@ def UMAP_analysis(Data, title, folder, **kwargs):
             plt.scatter(embedding[:, 0],embedding[:, 1],c = label_data[node],cmap = 'RdYlGn',s=10)
             plt.title(title+': UMAP_{}_Nodes={}_Exp:{}_n={}'.format(str(j),Nodes,node,str(n_neighbors)))
             plt.colorbar()
-            plt.savefig(Path(folder,title+'_UMAP_{}_Nodes={}_Exp{}_n={}'.format(str(j),str(len(Nodes)),node,str(n_neighbors))), format='png')
+            plt.savefig(Path(folder,title+'_UMAP_{}_Nodes={}_Exp{}_n={}.png'.format(str(j),str(len(Nodes)),node,str(n_neighbors))), format='png')
             plt.close()

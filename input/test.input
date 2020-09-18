@@ -1,4 +1,4 @@
-IN = CCLE.in, 73160.in
+IN = CCLE.in
 funcs = UMAP_analysis
 Nodes = ASCL1,NEUROD1,REST
 Color = ASCL1,NEUROD1
