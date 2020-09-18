@@ -9,6 +9,8 @@ from Funcs.stat_tests import Hier_significance, K_significance
 from Funcs.Umap import UMAP_analysis
 from Funcs.scatter import Scatter2D
 from Funcs.ScatterComp import ScatComp
+from Funcs.Hier_Scattering import Hier_Scat
+from Funcs.Test_node_addition import Node_add
 import sys
 
 if __name__ == '__main__':

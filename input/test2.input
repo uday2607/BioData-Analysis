@@ -1,0 +1,4 @@
+IN = CCLE.in
+funcs = Node_add
+Nodes = ASCL1,NEUROD1
+Color = ASCL1,NEUROD1,YAP1,POU2F3
