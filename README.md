@@ -1,6 +1,6 @@
 # BioData Analysis  
    
-A group of codes written (for SCLC project) to do several data analysis on SCLC datasets. These codes can do analysis on Bulk RNA data, Single Seq data,Tumor cell lines etc..,  
+A group of codes written (for SCLC project) to do several data analysis on SCLC datasets. These codes can do analysis on Bulk RNA data, Single Seq data,Tumor cell lines etc..,. These functions can be found in "Funcs" folder
   
 ## Instruction on running the analysis  
 ### IN file  
