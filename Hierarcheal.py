@@ -10,38 +10,16 @@ import sklearn.metrics as sm
 import os
 from pathlib import Path
 
-def Hier_analysis(Data, title, folder):
+def Hier_analysis(Data, title, folder, **kwargs):
 
-    out = "Hier"
-    if not os.path.exists(Path(folder,out)):
-        os.mkdir(Path(folder,out))
+    ## Dendogram for n nodes ##
+    Nodes = kwargs['Dims']
+    if Nodes == ['']:
+        NODES = []
+        for node in open('sclcnetwork.ids').readlines():
+            NODES.append(str(node.split('\t')[0].strip()))
 
-    NODES = []
-    for node in open('sclcnetwork.ids').readlines():
-        NODES.append(str(node.split('\t')[0].strip()))
-
-    ## Dendogram for 33 nodes ##
-
-    Remove = []
-    for node in NODES:
-        if not node in list(Data.index):
-            Remove.append(node)
-
-    for node in Remove:
-        NODES.remove(node)
-
-    data = Data.loc[NODES]
-    data = data.astype(float)
-    scaled_data = preprocessing.scale(data.T)
-
-    dend1 = dendrogram(linkage(scaled_data,method='ward'),leaf_rotation=90,leaf_font_size=8)
-    plt.suptitle(title+": "+"Dendogram for SCLC {} nodes".format(len(NODES)))
-    plt.savefig(Path(folder,out,title+": "+"Dendogram for SCLC {} nodes".format(len(NODES))))
-    plt.clf()
-
-    ## Dendogram for 5 nodes ##
-
-    Nodes = ['ASCL1','NEUROD1','POU2F3','ATOH1','YAP1']
+        Nodes = NODES
 
     Remove = []
     for node in Nodes:
@@ -56,6 +34,6 @@ def Hier_analysis(Data, title, folder):
     scaled_data = preprocessing.scale(data.T)
 
     dend1 = dendrogram(linkage(scaled_data,method='ward'),leaf_rotation=90,leaf_font_size=8)
-    plt.suptitle(title+": "+"Dendogram for Choosen ({}) Nodes".format(len(Nodes)))
-    plt.savefig(Path(folder,out,title+": "+"Dendogram for Choosen ({}) Nodes".format(len(Nodes))))
+    plt.suptitle(title+": "+"Dendogram for Choosen ({}) Nodes".format(Nodes))
+    plt.savefig(Path(folder,title+":"+"Dendogram_({})_Nodes".format(len(Nodes))), format='png')
     plt.clf()

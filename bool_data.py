@@ -16,12 +16,7 @@ def num2vect(num,node_num):
     arr = np.where(arr <= 0, -1.0, arr)
     return arr.astype(np.float32)
 
-def Hier_Bool(Data, title, folder):
-
-    out = 'Bool_matrix'
-
-    if not os.path.exists(Path(folder,'Bool_matrix')):
-        os.mkdir(Path(folder,'Bool_matrix'))
+def Hier_Bool(Data, title, folder, **kwargs):
 
     NODES = []
     for node in open('sclcnetwork.ids').readlines():
@@ -102,18 +97,13 @@ def Hier_Bool(Data, title, folder):
             for j in range(len(STATES)):
                 text = ax1.text(j, i, '%0.3f' % matrix[i, j], ha="center", va="center", color="black", fontsize = 7.5)
         plt.suptitle(title+": "+"Heatmap of distance of States from Hier({}) to Boolean ({}) states".format(h, len(STATES)))
-        plt.savefig(Path(folder,out,title+": "+"Heatmap of distance of States from Hier({}) to Boolean states".format(h, len(STATES))))
+        plt.savefig(Path(folder,title+":"+"Heatmap_dis_Hier({})_to_Boolean({}).png".format(h, len(STATES))), format='png')
         plt.cla()
         plt.clf()
 
     plt.close(fig)
 
-def K_Bool(Data, title, folder):
-
-    out = 'Bool_matrix'
-
-    if not os.path.exists(Path(folder,'Bool_matrix')):
-        os.mkdir(Path(folder,'Bool_matrix'))
+def K_Bool(Data, title, folder, **kwargs):
 
     NODES = []
     for node in open('sclcnetwork.ids').readlines():
@@ -194,7 +184,7 @@ def K_Bool(Data, title, folder):
             for j in range(len(STATES)):
                 text = ax1.text(j, i, '%0.3f' % matrix[i, j], ha="center", va="center", color="black", fontsize = 7.5)
         plt.suptitle(title+": "+"Heatmap of distance of States from K({}) to Boolean ({}) states".format(k, len(STATES)))
-        plt.savefig(Path(folder,out,title+": "+"Heatmap of distance of States from K({}) to Boolean states".format(k, len(STATES))))
+        plt.savefig(Path(folder,title+":"+"Heatmap_dis_K({})_to_Boolean({}).png".format(k, len(STATES))), format='png')
         plt.cla()
         plt.clf()
 

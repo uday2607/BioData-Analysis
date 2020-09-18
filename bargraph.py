@@ -8,13 +8,18 @@ from sklearn.cluster import KMeans
 import os
 from pathlib import Path
 
-def Hier_BarGraph(Data, title, folder):
+def Hier_BarGraph(Data, title, folder, **kwargs):
 
-    if not os.path.exists(Path(folder,'Bargraph')):
-        os.mkdir(Path(folder,'Bargraph'))
+    Nodes = kwargs['Dims']
+    if Nodes == ['']:
+        NODES = []
+        for node in open('sclcnetwork.ids').readlines():
+            NODES.append(str(node.split('\t')[0].strip()))
 
-    Nodes = ['ASCL1','NEUROD1','POU2F3','ATOH1','YAP1']
+        Nodes = NODES
+
     colours = ["#9b59b6", "#3498db", "#95a5a6", "#e74c3c", "#34495e", "#2ecc71"]
+
     Remove = []
     for node in Nodes:
         if not node in list(Data.index):
@@ -62,17 +67,21 @@ def Hier_BarGraph(Data, title, folder):
         ax.set_xticklabels(tick_labels)
         ax.set_xlabel('Cluster cardinality')
         ax.set_ylabel("Expression value")
-        ax.set_title(title + ": Expression levels of {} nodes for hier : {}".format(len(Nodes), h))
+        ax.set_title(title + ": Exp_of_{}_nodes_hier={}".format(Nodes, h))
         ax.legend(handles = patches)
-        plt.savefig(Path(folder,'Bargraph',"Expression levels of {} nodes for hier : {}".format(len(Nodes), h)))
+        plt.savefig(Path(folder,title+":Exp_of_{}_nodes_hier={}.png".format(len(Nodes), h)), format='png')
         plt.cla()
 
-def K_BarGraph(Data, title, folder):
+def K_BarGraph(Data, title, folder, **kwargs):
 
-    if not os.path.exists(Path(folder,'Bargraph')):
-        os.mkdir(Path(folder,'Bargraph'))
+    Nodes = kwargs['Dims']
+    if Nodes == ['']:
+        NODES = []
+        for node in open('sclcnetwork.ids').readlines():
+            NODES.append(str(node.split('\t')[0].strip()))
 
-    Nodes = ['ASCL1','NEUROD1','POU2F3','ATOH1','YAP1']
+        Nodes = NODES
+
     colours = ["#9b59b6", "#3498db", "#95a5a6", "#e74c3c", "#34495e", "#2ecc71"]
     Remove = []
     for node in Nodes:
@@ -122,7 +131,7 @@ def K_BarGraph(Data, title, folder):
         ax.set_xticklabels(tick_labels)
         ax.set_xlabel('Cluster cardinality')
         ax.set_ylabel("Expression value")
-        ax.set_title(title + ": Expression levels of {} nodes for K : {}".format(len(Nodes), k))
+        ax.set_title(title + ": Exp_of_{}_nodes_K={}".format(Nodes, k))
         ax.legend(handles = patches)
-        plt.savefig(Path(folder,'Bargraph',"Expression levels of {} nodes for K : {}".format(len(Nodes), k)))
+        plt.savefig(Path(folder,title+":Exp_of_{}_nodes_K={}.png".format(len(Nodes), k)), format='png')
         plt.cla()

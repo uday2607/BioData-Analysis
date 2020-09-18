@@ -132,12 +132,24 @@ def parse_input(file):
     with open(Path("input",file),'r') as f:
         lines = f.readlines()
 
-    IN = lines[0].split("=")[1].strip("\n").strip()
-    data, title, out  = parse_infile(IN)
+    Inputs = lines[0].split("=")[1].strip("\n").strip().split(",")
+    IN = []
+    for data in Inputs:
+        IN.append(data.strip())
 
     funcs = lines[1].split("=")[1].strip("\n").strip().split(",")
     runs = []
     for func in funcs:
          runs.append(func.strip())
 
-    return data, title, out, runs
+    dims = lines[2].split("=")[1].strip("\n").strip().split(",")
+    Dims = []
+    for dim in dims:
+        Dims.append(dim.strip())
+
+    color = lines[3].split("=")[1].strip("\n").strip().split(",")
+    Colors = []
+    for c in color:
+        Colors.append(c.strip())
+
+    return IN, runs, Dims, Colors
