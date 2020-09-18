@@ -1,13 +1,13 @@
 from Parse import *
 from pickle_data import Pickle_Data
-from pca_corre import PCA_analysis
-from k_means import K_analysis
-from Hierarcheal import Hier_analysis
-from bargraph import Hier_BarGraph, K_BarGraph
-from bool_data import Hier_Bool, K_Bool
-from stat_tests import Hier_significance, K_significance
-from Umap import UMAP_analysis
-from scatter import Scatter2D
+from Funcs.pca_corre import PCA_analysis
+from Funcs.k_means import K_analysis
+from Funcs.Hierarcheal import Hier_analysis
+from Funcs.bargraph import Hier_BarGraph, K_BarGraph
+from Funcs.bool_data import Hier_Bool, K_Bool
+from Funcs.stat_tests import Hier_significance, K_significance
+from Funcs.Umap import UMAP_analysis
+from Funcs.scatter import Scatter2D
 
 import sys
 
