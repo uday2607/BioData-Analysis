@@ -1,4 +1,4 @@
 IN = CCLE.in
-funcs = Scatter2D
-Nodes = ASCL1,NEUROD1,REST
-Color = ASCL1,NEUROD1
+funcs = Scatter2D,K_analysis,Hier_analysis,K_BarGraph,Hier_BarGraph,UMAP_analysis,ScatComp
+Nodes = ASCL1,NEUROD1
+Color = ASCL1,NEUROD1,REST,INSM1

@@ -53,5 +53,5 @@ def ScatComp(Data, title, folder,**kwargs):
                 ax.scatter(X, Y, s = 25, c = clr)
                 ax.set_xlabel(pnodes[0])
                 ax.set_ylabel(pnodes[1])
-                plt.savefig(str(folder)+"/Test"+pnodes[0]+"_"+pnodes[1]+".png",type="png")
+                plt.savefig(str(folder)+"/Test"+pnodes[0]+"_"+pnodes[1]+".png",format="png")
                 plt.close(fig)

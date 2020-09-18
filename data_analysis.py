@@ -8,7 +8,7 @@ from Funcs.bool_data import Hier_Bool, K_Bool
 from Funcs.stat_tests import Hier_significance, K_significance
 from Funcs.Umap import UMAP_analysis
 from Funcs.scatter import Scatter2D
-
+from Funcs.ScatterComp import ScatComp
 import sys
 
 if __name__ == '__main__':

@@ -11,7 +11,7 @@ from sklearn.cluster import AgglomerativeClustering,MeanShift
 def UMAP_analysis(Data, title, folder, **kwargs):
 
     n_neighbors = 4
-    trial = 1
+    trial = 3
 
     # dimensions which are to be plotted
     TADA = kwargs['Dims']
