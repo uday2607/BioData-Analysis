@@ -81,5 +81,5 @@ def Scatter2D(Data, title, folder, **kwargs):
         for node in label_nodes:
             fig, ax = density_scatter(X, Y, pnodes[0], pnodes[1], color=scaled_data.loc[node], bins = [200,200])
             plt.suptitle(title+": Scatter plot of {} and {}".format(pnodes[0],pnodes[1]))
-            plt.savefig(Path(folder,title+":Scatter_plot _{}_{}.png".format(pnodes[0],pnodes[1])), format='png')
+            plt.savefig(Path(folder,title+"_Scatter_plot _{}_{}.png".format(pnodes[0],pnodes[1])), format='png')
             plt.close(fig)

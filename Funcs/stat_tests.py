@@ -14,7 +14,7 @@ def create_proxy(label):
                 mec='none', marker=r'$\mathregular{{{}}}$'.format(label), markersize = 30)
     return line
 
-def Hier_significance(Data, title, folder):
+def Hier_significance(Data, title, folder,**kwargs):
 
     out = 'Significance_test'
     if not os.path.exists(Path(folder,out)):
@@ -118,7 +118,7 @@ def Hier_significance(Data, title, folder):
         LABELS = ['+','*']
         figure.legend([create_proxy(item) for item in LABELS], ['bio','stat'], fontsize = 45)
         plt.suptitle(title+": "+"Difference between mean expression levels of Choosen ({}) nodes, Hier : {}".format(len(Nodes),h), fontsize = 30)
-        plt.savefig(Path(folder,out,title+": "+"Difference between mean expression levels of Choosen ({}) nodes, Hier : {}".format(len(Nodes),h)))
+        plt.savefig(Path(folder,out,title+"_"+"Difference between mean expression levels of Choosen ({}) nodes, Hier : {}".format(len(Nodes),h)))
 
         for ii, node in enumerate(Nodes):
             Ax[ii].clear()
@@ -126,7 +126,7 @@ def Hier_significance(Data, title, folder):
     plt.close(figure)
 
 
-def K_significance(Data, title, folder):
+def K_significance(Data, title, folder, **kwargs):
 
     out = 'Significance_test'
     if not os.path.exists(Path(folder,out)):
@@ -230,7 +230,7 @@ def K_significance(Data, title, folder):
         LABELS = ['+','*']
         figure.legend([create_proxy(item) for item in LABELS], ['bio','stat'], fontsize = 45)
         plt.suptitle(title+": "+"Difference between mean expression levels of Choosen ({}) nodes, K : {}".format(len(Nodes),k),fontsize = 30)
-        plt.savefig(Path(folder,out,title+": "+"Difference between mean expression levels of Choosen ({}) nodes, K : {}".format(len(Nodes),k)))
+        plt.savefig(Path(folder,out,title+"_"+"Difference between mean expression levels of Choosen ({}) nodes, K : {}".format(len(Nodes),k)))
 
         for ii, node in enumerate(Nodes):
             Ax[ii].clear()

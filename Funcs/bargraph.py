@@ -69,7 +69,7 @@ def Hier_BarGraph(Data, title, folder, **kwargs):
         ax.set_ylabel("Expression value")
         ax.set_title(title + ": Exp_of_{}_nodes_hier={}".format(Nodes, h))
         ax.legend(handles = patches)
-        plt.savefig(Path(folder,title+":Exp_of_{}_nodes_hier={}.png".format(len(Nodes), h)), format='png')
+        plt.savefig(Path(folder,title+"_Exp_of_{}_nodes_hier={}.png".format(len(Nodes), h)), format='png')
         plt.cla()
 
 def K_BarGraph(Data, title, folder, **kwargs):
@@ -133,5 +133,5 @@ def K_BarGraph(Data, title, folder, **kwargs):
         ax.set_ylabel("Expression value")
         ax.set_title(title + ": Exp_of_{}_nodes_K={}".format(Nodes, k))
         ax.legend(handles = patches)
-        plt.savefig(Path(folder,title+":Exp_of_{}_nodes_K={}.png".format(len(Nodes), k)), format='png')
+        plt.savefig(Path(folder,title+"_Exp_of_{}_nodes_K={}.png".format(len(Nodes), k)), format='png')
         plt.cla()

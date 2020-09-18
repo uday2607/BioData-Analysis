@@ -35,5 +35,5 @@ def Hier_analysis(Data, title, folder, **kwargs):
 
     dend1 = dendrogram(linkage(scaled_data,method='ward'),leaf_rotation=90,leaf_font_size=8)
     plt.suptitle(title+": "+"Dendogram for Choosen ({}) Nodes".format(Nodes))
-    plt.savefig(Path(folder,title+":"+"Dendogram_({})_Nodes".format(len(Nodes))), format='png')
+    plt.savefig(Path(folder,title+"_"+"Dendogram_({})_Nodes".format(len(Nodes))), format='png')
     plt.clf()
