@@ -67,7 +67,7 @@ def K_analysis(Data,title,folder,**kwargs):
     plt.ylabel("Silhoutte score")
     plt.xlabel("K values")
     plt.suptitle(title+": "+"Silhoutte score for Choosen ({}) nodes".format(Nodes))
-    plt.savefig(Path(folder,title+"_"+"Silhoutte_score_({})_nodes".format(len(Nodes))), format='png')
+    plt.savefig(Path(folder,title+"_"+"Silhoutte_score_({})_nodes.png".format(len(Nodes))), format='png')
     plt.clf()
 
     # Distortions of K means #

@@ -27,7 +27,8 @@ def Hier_BarGraph(Data, title, folder, **kwargs):
 
     for node in Remove:
         Nodes.remove(node)
-
+    if not os.path.exists(Path(folder,"bargraph")):
+        os.mkdir(Path(folder,"bargraph"))
     data_n = Data.loc[Nodes]
     data_n = data_n.astype(float)
     scaled_data_n = preprocessing.scale(data_n.T)
@@ -40,7 +41,7 @@ def Hier_BarGraph(Data, title, folder, **kwargs):
     for i in range(len(Nodes)):
         patches.append(mpatches.Patch(color=colours[i], label=Nodes[i]))
 
-    for h in range(2,10):
+    for h in range(2,7):
 
         hc_n = AgglomerativeClustering(n_clusters = h,affinity='euclidean',linkage='ward')
         y_n = hc_n.fit_predict(scaled_data_n)
@@ -48,7 +49,7 @@ def Hier_BarGraph(Data, title, folder, **kwargs):
 
     fig, ax = plt.subplots()
 
-    for h in range(2,10):
+    for h in range(2,7):
 
         ticks = []
         tick_labels = []
@@ -69,7 +70,7 @@ def Hier_BarGraph(Data, title, folder, **kwargs):
         ax.set_ylabel("Expression value")
         ax.set_title(title + ": Exp_of_{}_nodes_hier={}".format(Nodes, h))
         ax.legend(handles = patches)
-        plt.savefig(Path(folder,title+"_Exp_of_{}_nodes_hier={}.png".format(len(Nodes), h)), format='png')
+        plt.savefig(Path(folder,"bargraph",title+"_Exp_of_{}_nodes_hier={}.png".format(len(Nodes), h)), format='png')
         plt.cla()
 
 def K_BarGraph(Data, title, folder, **kwargs):
@@ -81,7 +82,8 @@ def K_BarGraph(Data, title, folder, **kwargs):
             NODES.append(str(node.split('\t')[0].strip()))
 
         Nodes = NODES
-
+    if not os.path.exists(Path(folder,"bargraph")):
+        os.mkdir(Path(folder,"bargraph"))
     colours = ["#9b59b6", "#3498db", "#95a5a6", "#e74c3c", "#34495e", "#2ecc71"]
     Remove = []
     for node in Nodes:
@@ -103,7 +105,7 @@ def K_BarGraph(Data, title, folder, **kwargs):
     for i in range(len(Nodes)):
         patches.append(mpatches.Patch(color=colours[i], label=Nodes[i]))
 
-    for k in range(2,10):
+    for k in range(2,7):
 
         kmeans_n = KMeans(init="random",n_clusters=k,n_init=20,max_iter=300)
         x_n = kmeans_n.fit(scaled_data_n)
@@ -111,7 +113,7 @@ def K_BarGraph(Data, title, folder, **kwargs):
 
     fig, ax = plt.subplots()
 
-    for k in range(2,10):
+    for k in range(2,7):
 
         ticks = []
         tick_labels = []
@@ -133,5 +135,5 @@ def K_BarGraph(Data, title, folder, **kwargs):
         ax.set_ylabel("Expression value")
         ax.set_title(title + ": Exp_of_{}_nodes_K={}".format(Nodes, k))
         ax.legend(handles = patches)
-        plt.savefig(Path(folder,title+"_Exp_of_{}_nodes_K={}.png".format(len(Nodes), k)), format='png')
+        plt.savefig(Path(folder,"bargraph",title+"_Exp_of_{}_nodes_K={}.png".format(len(Nodes), k)), format='png')
         plt.cla()
