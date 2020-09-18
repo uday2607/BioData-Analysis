@@ -30,8 +30,10 @@ Select_samples = sample2, sample4 , sample10:sample34, sample39
 '.input' (or can use any extension) file in 'input' folder send information to 'Parser' which parses through the .in file which has name of the '.in' file from infiles folder which gives information about whch file to run. And it also has names of functions which needs to be applied on dataset (which is a pandas dataframe now). An example is given below:  
 |                     	|   	|                                                                                            	|
 |---------------------	|---	|--------------------------------------------------------------------------------------------	|
-| **IN**        	      | = 	| {name of .in on which data analysis needs to be done}                                      	|
+| **IN**        	      | = 	| {names of .in files on which data analysis needs to be done (seperated by ','}                |
 | **funcs**           	| = 	| {Names of function which needs to be applied on datset (seperated by ',') }                	|
+| **Nodes**             | =   | {Names of nodes which are the dimensions in a given analysis (seperated by ',') }             |
+| **Color**             | =   | {Names of nodes whose expression levels are used for color labels (seperated by ',') }        |
   
 ### data_analysis.py  
 This the python script which does analysis by importing functions from other python scripts and apply them. Import all the functions that needs to be used (i.e.. the ones given in "funcs" in '.in' file from "input folder"). Then just use the scipt as shown:
