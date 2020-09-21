@@ -6,6 +6,7 @@ from sklearn import preprocessing
 from sklearn.metrics import silhouette_score
 from sklearn.metrics import silhouette_samples
 import os
+import seaborn as sns
 from pathlib import Path
 
 def K_analysis(Data,title,folder,**kwargs):
@@ -62,13 +63,24 @@ def K_analysis(Data,title,folder,**kwargs):
         repl_avg.append(sil_avg)
 
     # Silhoutte score #
-
-    plt.boxplot(repl_avg[0:8],labels=np.array(range(2,10)),showmeans=True,notch=1,sym='')
-    plt.ylabel("Silhoutte score")
-    plt.xlabel("K values")
-    plt.suptitle(title+": "+"Silhoutte score for Choosen ({}) nodes".format(Nodes))
-    plt.savefig(Path(folder,title+"_"+"Silhoutte_score_({})_nodes.png".format(len(Nodes))), format='png')
-    plt.clf()
+    sns.set(font_scale=8)
+    with sns.axes_style('white'):
+        with plt.rc_context({'lines.linewidth': 9}):
+            boxprops = dict(linewidth=9)
+            fig, ax = plt.subplots(figsize=(50,50))
+            bp = plt.boxplot(repl_avg[0:8], boxprops = boxprops,
+                        labels=np.array(range(2,10)),showmeans=True,notch=1,sym='')
+            for whisker in bp['whiskers']: 
+                    whisker.set(linewidth = 9)
+            for cap in bp['caps']: 
+                cap.set(linewidth = 9) 
+            for median in bp['medians']: 
+                median.set(linewidth = 9)
+            plt.ylabel("Silhoutte score")
+            plt.xlabel("K values")
+    # plt.suptitle(title+": "+"Silhoutte score for Choosen ({}) nodes".format(Nodes))
+            plt.savefig(Path(folder,title+"_"+"Silhoutte_score_({})_nodes.png".format(len(Nodes))), format='png')
+            plt.show()
 
     # Distortions of K means #
 

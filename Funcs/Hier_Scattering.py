@@ -9,11 +9,12 @@ from sklearn.cluster import MeanShift
 import sklearn.metrics as sm
 import os
 from pathlib import Path
+import seaborn as sns
 
 def Hier_Scat(Data, title, folder, **kwargs):
 
     ## Perform Agglomerative for N clusters ##
-    N = 3
+    N = 4
     Nodes = kwargs['Dims']
     if Nodes == ['']:
         NODES = []
@@ -70,14 +71,19 @@ def Hier_Scat(Data, title, folder, **kwargs):
 
     plot_nodes = []
     plot_nodes.append(["ASCL1",'NEUROD1']) ######################################
-    
-    for pnodes in plot_nodes:
-        X = np.array(scaled_data.loc[pnodes[0]])
-        Y = np.array(scaled_data.loc[pnodes[1]])
-        fig , ax = plt.subplots()
-        ax.scatter(X, Y, s = 25, c = label_color)
-        ax.set_xlabel(pnodes[0])
-        ax.set_ylabel(pnodes[1])
-        plt.suptitle(title+": "+"HC Scat for Choosen ({}) Nodes for {} clusters".format(Nodes,str(N)))
-        plt.savefig(Path(folder,title+"_"+"HCScAT_({})_Nodes_{}clus.png".format(len(Nodes),str(N))), format='png')
-        plt.clf()
+    sns.set(font_scale=8)
+    with sns.axes_style('white'):
+        with plt.rc_context({'lines.linewidth': 9}):
+            fig, ax = plt.subplots(figsize=(50,50))
+            for pnodes in plot_nodes:
+                X = np.array(scaled_data.loc[pnodes[0]])
+                Y = np.array(scaled_data.loc[pnodes[1]])
+                ax.scatter(X, Y, s = 650, c = label_color)
+                ax.set_xlabel(pnodes[0])
+                ax.set_ylabel(pnodes[1])
+                plt.axvline(x=0, color='r', linestyle='--')
+                plt.axhline(y=0, color='r', linestyle='--')
+                # plt.suptitle(title+": "+"HC Scat for Choosen ({}) Nodes for {} clusters".format(Nodes,str(N)))
+                plt.savefig(Path(folder,
+                                 title+"_"+"HCScAT_({})_Nodes_{}clus.png".format(len(Nodes),str(N))), format='png')
+                plt.show()
