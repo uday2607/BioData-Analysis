@@ -9,7 +9,6 @@ from sklearn.cluster import MeanShift
 import sklearn.metrics as sm
 import os
 from pathlib import Path
-import seaborn as sns
 
 def Hier_analysis(Data, title, folder, **kwargs):
 
@@ -33,13 +32,8 @@ def Hier_analysis(Data, title, folder, **kwargs):
     data = Data.loc[Nodes]
     data = data.astype(float)
     scaled_data = preprocessing.scale(data.T)
-    sns.set(font_scale=8)
-    with sns.axes_style('white'):
-        with plt.rc_context({'lines.linewidth': 7}):
-            fig, ax = plt.subplots(figsize=(50,50))
-            dend1 = dendrogram(linkage(scaled_data,method='ward'),leaf_rotation=90,
-                           leaf_font_size=60,color_threshold=4)
-        # plt.suptitle(title+": "+"Dendogram for Choosen ({}) Nodes".format(Nodes))
-            plt.savefig(Path(folder,title+"_"+"Dendogram_({})_Nodes.png".format(len(Nodes))), 
-                    format='png')
-            plt.show()
+
+    dend1 = dendrogram(linkage(scaled_data,method='ward'),leaf_rotation=90,leaf_font_size=8)
+    plt.suptitle(title+": "+"Dendogram for Choosen ({}) Nodes".format(Nodes))
+    plt.savefig(Path(folder,title+"_"+"Dendogram_({})_Nodes.png".format(len(Nodes))), format='png')
+    plt.clf()

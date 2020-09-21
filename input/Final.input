@@ -1,4 +1,0 @@
-IN = CCLE.in,73160.in
-funcs = Hier_analysis
-Nodes = ASCL1,NEUROD1
-Color = ASCL1,NEUROD1,YAP1,POU2F3

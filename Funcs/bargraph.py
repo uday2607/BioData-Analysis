@@ -71,7 +71,7 @@ def Hier_BarGraph(Data, title, folder, **kwargs):
         ax.set_title(title + ": Exp_of_{}_nodes_hier={}".format(Nodes, h))
         ax.legend(handles = patches)
         plt.savefig(Path(folder,"bargraph",title+"_Exp_of_{}_nodes_hier={}.png".format(len(Nodes), h)), format='png')
-        plt.show()
+        plt.cla()
 
 def K_BarGraph(Data, title, folder, **kwargs):
 
@@ -136,4 +136,4 @@ def K_BarGraph(Data, title, folder, **kwargs):
         ax.set_title(title + ": Exp_of_{}_nodes_K={}".format(Nodes, k))
         ax.legend(handles = patches)
         plt.savefig(Path(folder,"bargraph",title+"_Exp_of_{}_nodes_K={}.png".format(len(Nodes), k)), format='png')
-        plt.show()
+        plt.cla()
