@@ -7,6 +7,7 @@ from sklearn.metrics import silhouette_score
 from sklearn.metrics import silhouette_samples
 import os
 from pathlib import Path
+import seaborn as sns
 
 def K_analysis(Data,title,folder,**kwargs):
 
@@ -62,11 +63,11 @@ def K_analysis(Data,title,folder,**kwargs):
         repl_avg.append(sil_avg)
 
     # Silhoutte score #
-
+    sns.set_context("paper", font_scale=1.5)
     plt.boxplot(repl_avg[0:8],labels=np.array(range(2,10)),showmeans=True,notch=1,sym='')
     plt.ylabel("Silhoutte score")
     plt.xlabel("K values")
-    plt.suptitle(title+": "+"Silhoutte score for Choosen ({}) nodes".format(Nodes))
+    # plt.suptitle(title+": "+"Silhoutte score for Choosen ({}) nodes".format(Nodes))
     plt.savefig(Path(folder,title+"_"+"Silhoutte_score_({})_nodes.png".format(len(Nodes))), format='png')
     plt.clf()
 
@@ -78,7 +79,7 @@ def K_analysis(Data,title,folder,**kwargs):
     plt.errorbar(K,distortions,yerr=vars)
     plt.ylabel("Distortions")
     plt.xlabel("K values")
-    plt.suptitle(title+": "+'Elbow plot for Choosen ({}) nodes'.format(len(Nodes)))
+    # plt.suptitle(title+": "+'Elbow plot for Choosen ({}) nodes'.format(len(Nodes)))
     plt.savefig(Path(folder,title+"_"+'Elbow_plot_({})_nodes.png'.format(len(Nodes))), format='png')
     plt.clf()
 
@@ -88,6 +89,6 @@ def K_analysis(Data,title,folder,**kwargs):
     plt.plot(K,diff,'rx-')
     plt.ylabel("Difference in Distortions")
     plt.xlabel("K values")
-    plt.suptitle(title+": "+'Differences in Distortions for Choosen ({}) nodes'.format(len(Nodes)))
+    # plt.suptitle(title+": "+'Differences in Distortions for Choosen ({}) nodes'.format(len(Nodes)))
     plt.savefig(Path(folder,title+"_"+'Diff_Distortions_({})_nodes.png'.format(len(Nodes))), format='png')
     plt.clf()

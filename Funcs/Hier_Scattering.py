@@ -9,11 +9,12 @@ from sklearn.cluster import MeanShift
 import sklearn.metrics as sm
 import os
 from pathlib import Path
+import seaborn as sns
 
 def Hier_Scat(Data, title, folder, **kwargs):
 
     ## Perform Agglomerative for N clusters ##
-    N = 3
+    N = 5
     Nodes = kwargs['Dims']
     if Nodes == ['']:
         NODES = []
@@ -75,9 +76,12 @@ def Hier_Scat(Data, title, folder, **kwargs):
         X = np.array(scaled_data.loc[pnodes[0]])
         Y = np.array(scaled_data.loc[pnodes[1]])
         fig , ax = plt.subplots()
+        sns.set_context("paper", font_scale=1.5)
         ax.scatter(X, Y, s = 25, c = label_color)
         ax.set_xlabel(pnodes[0])
         ax.set_ylabel(pnodes[1])
+        plt.axvline(x=0,linestyle='--',c = 'r')
+        plt.axhline(y=0,linestyle='--',c = 'r')
         plt.suptitle(title+": "+"HC Scat for Choosen ({}) Nodes for {} clusters".format(Nodes,str(N)))
         plt.savefig(Path(folder,title+"_"+"HCScAT_({})_Nodes_{}clus.png".format(len(Nodes),str(N))), format='png')
         plt.clf()

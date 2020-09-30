@@ -7,11 +7,12 @@ import pickle, os
 from pathlib import Path
 from sklearn.cluster import KMeans
 from sklearn.cluster import AgglomerativeClustering,MeanShift
+import seaborn as sns
 
 def UMAP_analysis(Data, title, folder, **kwargs):
 
     n_neighbors = 4
-    trial = 3
+    trial = 5
 
     # dimensions which are to be plotted
     TADA = kwargs['Dims']
@@ -56,8 +57,10 @@ def UMAP_analysis(Data, title, folder, **kwargs):
         embedding = reducer.fit_transform(Scaled_data)
 
         for node in Nodes:
+            sns.set_context("paper", font_scale=1.5)
             plt.scatter(embedding[:, 0],embedding[:, 1],c = label_data[node],cmap = 'RdYlGn',s=10)
-            plt.title(title+': UMAP_{}_Nodes={}_Exp:{}_n={}'.format(str(j),TADA,node,str(n_neighbors)))
+            # plt.title(title+': UMAP_{}_Nodes={}_Exp:{}_n={}'.format(str(j),TADA,node,str(n_neighbors)))
+            plt.title('{}'.format(node))
             plt.colorbar()
             plt.savefig(Path(folder,"UMAP",title+'_UMAP_{}_Nodes={}_Exp{}_n={}.png'.format(str(j),str(len(TADA)),node,str(n_neighbors))), format='png')
             plt.close()

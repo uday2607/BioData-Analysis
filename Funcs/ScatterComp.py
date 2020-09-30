@@ -8,6 +8,7 @@ import os, pickle
 from matplotlib import cm
 from matplotlib.colors import Normalize
 from scipy.interpolate import interpn
+import seaborn as sns
 
 def ScatComp(Data, title, folder,**kwargs):
 
@@ -50,6 +51,7 @@ def ScatComp(Data, title, folder,**kwargs):
                 clr[np.logical_and(Y>0,Z>0)] = 3
             
                 fig , ax = plt.subplots()
+                sns.set_context("paper", font_scale=1.5)
                 plt.suptitle(title+": Scatter plot of {} and {}.png".format(pnodes[0],pnodes[1]))
                 ax.scatter(X, Y, s = 25, c = clr)
                 ax.set_xlabel(pnodes[0])

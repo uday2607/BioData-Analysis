@@ -7,6 +7,7 @@ from sklearn.cluster import AgglomerativeClustering
 from sklearn.cluster import KMeans
 import os
 from pathlib import Path
+import seaborn as sns
 
 def Hier_BarGraph(Data, title, folder, **kwargs):
 
@@ -48,6 +49,7 @@ def Hier_BarGraph(Data, title, folder, **kwargs):
         hc_labels_n.append(np.array(hc_n.labels_))
 
     fig, ax = plt.subplots()
+    sns.set_context("paper", font_scale=1.5)
 
     for h in range(2,7):
 
