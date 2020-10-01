@@ -35,6 +35,7 @@ def Hier_BarGraph(Data, title, folder, **kwargs):
     scaled_data_n = preprocessing.scale(data_n.T)
 
     columns = np.array(data_n.columns)
+    Data_n = pd.DataFrame(scaled_data_n.T, index = Nodes, columns = columns).T
 
     hc_labels_n = []
 
@@ -65,6 +66,11 @@ def Hier_BarGraph(Data, title, folder, **kwargs):
             ax.bar(x, y, yerr = y_error, color = colours[:len(Nodes)], width = 0.1, label = str(i))
 
             x = x + 0.6
+
+        H_data = Data_n.copy()
+        H_data['Hier_labels'] = hc_labels_n[h-2]
+        H_data = H_data.sort_values(by=['Hier_labels'])
+        H_data.to_excel(Path(folder,"bargraph",title+"_Cellline_classify_{}_nodes_Hier_{}.xlsx".format(len(Nodes),h)))
 
         ax.set_xticks(ticks)
         ax.set_xticklabels(tick_labels)
@@ -100,6 +106,7 @@ def K_BarGraph(Data, title, folder, **kwargs):
     scaled_data_n = preprocessing.scale(data_n.T)
 
     columns = np.array(data_n.columns)
+    Data_n = pd.DataFrame(scaled_data_n.T, index = Nodes, columns = columns).T
 
     k_labels_n = []
 
@@ -130,6 +137,11 @@ def K_BarGraph(Data, title, folder, **kwargs):
             ax.bar(x, y, yerr = y_error, color = colours[:len(Nodes)], width = 0.1, label = str(i))
 
             x = x + 0.6
+
+        K_data = Data_n.copy()
+        K_data['K_labels'] = k_labels_n[k-2]
+        K_data = K_data.sort_values(by=['K_labels'])
+        K_data.to_excel(Path(folder,"bargraph",title+"_Cellline_classify_{}_nodes_K_{}.xlsx".format(len(Nodes),k)))
 
         ax.set_xticks(ticks)
         ax.set_xticklabels(tick_labels)
