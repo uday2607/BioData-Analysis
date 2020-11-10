@@ -33,7 +33,7 @@ def PCA_analysis(Data,title,folder,**kwargs):
         a2 = np.sum(DATA[23:, 23:])
         a3 = np.sum(DATA[23:,:22]) + np.sum(DATA[:22,23:])
         num = a1 + a2 - a3
-        return num
+        return num+1
 
     out = "PCA"
     if not os.path.exists(Path(folder,out)):

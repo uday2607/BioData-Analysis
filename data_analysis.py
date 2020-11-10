@@ -11,6 +11,7 @@ from Funcs.scatter import Scatter2D
 from Funcs.ScatterComp import ScatComp
 from Funcs.Hier_Scattering import Hier_Scat
 from Funcs.Test_node_addition import Node_add
+from Funcs.random_correlation import Random_corre
 import sys
 
 if __name__ == '__main__':
