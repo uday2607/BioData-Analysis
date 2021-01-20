@@ -1,4 +1,4 @@
-IN = CCLE.in, 73160.in
+IN = 73160.in,CCLE.in
 funcs = K_BarGraph, Hier_BarGraph
-Nodes = ASCL1,NEUROD1,YAP1,POU2F3
+Nodes = ASCL1,NEUROD1
 Color = ASCL1,NEUROD1,YAP1,POU2F3,REST,INSM1
