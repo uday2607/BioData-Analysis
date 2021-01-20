@@ -9,7 +9,7 @@ import os
 from pathlib import Path
 import seaborn as sns
 
-def Hier_BarGraph(Data, title, folder, **kwargs):
+def Hier_BarGraph_2(Data, title, folder, **kwargs):
 
     Nodes = kwargs['Dims']
 
@@ -123,7 +123,7 @@ def Hier_BarGraph(Data, title, folder, **kwargs):
         plt.cla()
         '''
 
-def K_BarGraph(Data, title, folder, **kwargs):
+def K_BarGraph_2(Data, title, folder, **kwargs):
 
 
     Nodes = kwargs['Dims']
